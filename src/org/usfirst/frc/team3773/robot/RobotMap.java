@@ -6,13 +6,26 @@ package org.usfirst.frc.team3773.robot;
  * floating around.
  */
 public class RobotMap {
-    // For example to map the left and right motors, you could define the
-    // following variables to use with your drivetrain subsystem.
-    // public static int leftMotor = 1;
-    // public static int rightMotor = 2;
+    //TALONS
+	public static int leftDriveChannel = 0; //Channel for the left drive
+	public static int rightDriveChannel = 1; //Channel for the right drive
+    public static int shooterInChannel = 2; //Channel for the shooter intake
+    public static int shooterOut1Channel = 3; //Channel for the bottom shooter bar
+    public static int shooterOut2Channel = 4; //Channel for the top shooter bar
+    public static int armChannel1 = 5; //Channel for the first talon for the arm
+    public static int armChannel2 = 6; //Channel for the first talon for the arm
+	
+    //ANALOG INPUTS
+    //public static int gyroChannel = 0; //Channel for the gyro
+    public static int infraRedChannel = 0;
+    public static int ultrasonicChannel = 1; //Channel for the range finder
     
-    // If you are using multiple modules, make sure to define both the port
-    // number and the module. For example you with a rangefinder:
-    // public static int rangefinderPort = 1;
-    // public static int rangefinderModule = 1;
+    //DIGITAL INPUTS
+    public static int armLimitChannel = 2; //Limit switch for the top of the arm
+    
+    //USB (port number on the dashboard)
+    public static int joystickLeftChannel = 0; //Port number for the left joystick
+	public static int joystickRightChannel = 1; //Port number for the right joystick
+	public static int xboxChannel = 2; //Port number for the xbox controller
+	
 }
