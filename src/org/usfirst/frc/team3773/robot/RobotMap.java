@@ -24,8 +24,12 @@ public class RobotMap {
     public static int armLimitChannel = 2; //Limit switch for the top of the arm
     
     //USB (port number on the dashboard)
-    public static int joystickLeftChannel = 0; //Port number for the left joystick
-	public static int joystickRightChannel = 1; //Port number for the right joystick
+    public static int leftJoystickChannel = 0; //Port number for the left joystick
+	public static int rightJoystickChannel = 1; //Port number for the right joystick
 	public static int xboxChannel = 2; //Port number for the xbox controller
+	
+	//CAMERAS
+	public static String frontCamera = "cam1";
+	public static String rearCamera = "cam2";
 	
 }

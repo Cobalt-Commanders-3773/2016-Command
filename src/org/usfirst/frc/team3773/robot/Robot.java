@@ -1,12 +1,17 @@
 
 package org.usfirst.frc.team3773.robot;
 
+import org.usfirst.frc.team3773.robot.commands.DriveForward;
+import org.usfirst.frc.team3773.robot.subsystems.Arm;
+import org.usfirst.frc.team3773.robot.subsystems.Camera;
+import org.usfirst.frc.team3773.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3773.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-//import org.usfirst.frc.team3773.robot.commands.ExampleCommand;
-//import org.usfirst.frc.team3773.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,9 +26,25 @@ public class Robot extends IterativeRobot {
 
 	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
+	public static DriveTrain drivetrain;
+	public static Camera camera;
+	public static Shooter shooter;
+	public static Arm arm;
 
-    Command autonomousCommand;
-    SendableChooser chooser;
+    Command autonomousCommand;    
+    final String defaultAuto = "Default";
+    final String portAuto = "Portcullis";
+    final String chevalAuto = "Cheval de Frise";
+    final String moatAuto = "Moat";
+    final String rampAuto = "Ramparts";
+    final String drawAuto = "Drawbridge";
+    final String sallyAuto = "Sally Port";
+    final String rockAuto = "Rock Wall";
+    final String roughAuto = "Rough Terrain";
+    final String minAuto = "Auto Line";
+    final String testAuto = "Test Auto";
+    String autoSelected;
+    SendableChooser chooser; //Create the chooser for the dashboard
 
     /**
      * This function is run when the robot is first started up and should be
@@ -31,10 +52,24 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 		oi = new OI();
+		drivetrain = new DriveTrain();
+		camera = new Camera();
+		shooter = new Shooter();
+		arm = new Arm();
+		
         chooser = new SendableChooser();
-       // chooser.addDefault("Default Auto", new ExampleCommand());
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        chooser.addDefault("Default Auto", defaultAuto);
+        chooser.addObject("Portcullis", portAuto);
+        chooser.addObject("Cheval de Frise", chevalAuto);
+        chooser.addObject("Moat", moatAuto);
+        chooser.addObject("Ramparts", rampAuto);
+        chooser.addObject("Drawbridge", drawAuto);
+        chooser.addObject("Sally Port", sallyAuto);
+        chooser.addObject("Rock Wall", rockAuto);
+        chooser.addObject("Rough Terrain", roughAuto);
+        chooser.addObject("Auto Line", minAuto);
+        chooser.addObject("Test Auto", testAuto);
+        SmartDashboard.putData("Auto choices", chooser);
     }
 	
 	/**
@@ -72,6 +107,53 @@ public class Robot extends IterativeRobot {
 			autonomousCommand = new ExampleCommand();
 			break;
 		} */
+        switch(autoSelected) {
+    	case portAuto: //NEEDS TESTING
+    		//Code to complete the Portcullis
+    		
+            break;
+    	case chevalAuto: //NEEDS TESTING
+    		//Code to complete the Cheval de Frise
+    		
+    		break;
+    	case moatAuto: //TIME?
+    		//Code to complete the Moat
+    		autonomousCommand = new DriveForward(2, -.65);
+    		break;
+    	case rampAuto: //NEEDS TESTING
+    		//Code to complete the Ramparts
+    		autonomousCommand = new DriveForward(2, -.85);
+    		break;
+    	case drawAuto: //NEEDS TESTING
+    		//Code to complete the Drawbridge
+
+    		break;
+    	case sallyAuto: //NEEDS TESTING
+    		//Code to complete the Sallyport
+    		 
+    		break;
+    	case rockAuto: //NEEDS TESTING
+    		//Code to complete the Rock Wall
+    		autonomousCommand = new DriveForward(2.5, -.85);
+    		break;
+    	case roughAuto: //NEEDS TESTING
+    		//Code to complete the Rough Terrain
+    		autonomousCommand = new DriveForward(2.5, -.65);
+    		break;
+    	case minAuto: //NEEDS TESTING
+    		//Code to drive over the auto line at the start of the match
+    		autonomousCommand = new DriveForward(1, -.5); //(time in seconds, speed of motors)
+    		break;
+    	case testAuto: //FOR TESTING AUTO IDEAS
+    		//Space to test Auto concepts
+    		//(int position, double timeToCross, double powerToCross, double timeToCenter, double currentDistance)
+    		
+    		break;
+    	case defaultAuto:
+    	default:
+    		//The robot does nothing
+            break;
+    	}
     	
     	// schedule the autonomous command (example)
         if (autonomousCommand != null) autonomousCommand.start();
@@ -82,6 +164,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        log();
     }
 
     public void teleopInit() {
@@ -97,6 +180,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        log();
     }
     
     /**
@@ -104,5 +188,9 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+    
+    public void log(){
+    	drivetrain.log();
     }
 }
