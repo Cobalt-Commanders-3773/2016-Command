@@ -44,7 +44,7 @@ public class DriveTrain extends Subsystem {
         double currentDistance = (rangefinder.getAverageVoltage())*(valueToInches); //sensor returns a value from 0-4095 that is scaled to inches
         SmartDashboard.putNumber("Distance Graph ", currentDistance);
         SmartDashboard.putNumber("Distance", currentDistance);
-        SmartDashboard.putNumber("IRED SENSOTR", infraRed.getAverageVoltage());
+        SmartDashboard.putNumber("IRED", infraRed.getAverageVoltage());
 
 	}
 
@@ -71,7 +71,7 @@ public class DriveTrain extends Subsystem {
 	/**
 	 * @return The distance to the obstacle detected by the rangefinder.
 	 */
-	public double getDistanceToObstacle() {
+	public double getDistanceToObstacle() { //Not needed?
 		// Really meters in simulation since it's a rangefinder...
 		return rangefinder.getAverageVoltage();
 	}
