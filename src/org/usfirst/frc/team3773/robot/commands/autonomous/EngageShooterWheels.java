@@ -1,15 +1,19 @@
-package org.usfirst.frc.team3773.robot.commands;
+package org.usfirst.frc.team3773.robot.commands.autonomous;
+
+import org.usfirst.frc.team3773.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutoShoot extends Command {
+public class EngageShooterWheels extends Command {
 
-    public AutoShoot() {
+    public EngageShooterWheels(double delay) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.shooter);
+    	setTimeout(delay);
     }
 
     // Called just before this Command runs the first time
@@ -18,15 +22,16 @@ public class AutoShoot extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.shooter.shooterOut();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() { //Should not stop the shooter wheels so that they will be up to speed later
     }
 
     // Called when another command which requires one or more of the same

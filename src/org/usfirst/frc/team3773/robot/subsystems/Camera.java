@@ -27,12 +27,12 @@ public class Camera extends Subsystem {
         // the camera name (ex "cam0") can be found through the roborio web interface
         session = NIVision.IMAQdxOpenCamera(RobotMap.frontCamera,
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
-        //NIVision.IMAQdxConfigureGrab(session);
-        session2 = NIVision.IMAQdxOpenCamera(RobotMap.rearCamera,
-                NIVision.IMAQdxCameraControlMode.CameraControlModeController);
+        NIVision.IMAQdxConfigureGrab(session);
+        ////////////////////session2 = NIVision.IMAQdxOpenCamera(RobotMap.rearCamera,
         //NIVision.IMAQdxConfigureGrab(session2);
-        currSession = session;
-        NIVision.IMAQdxConfigureGrab(currSession);
+        //////////////////currSession = session;
+        /////////////////NIVision.IMAQdxConfigureGrab(currSession);
+        /////////////////NIVision.IMAQdxConfigureGrab(currSession);
     }
 	
 	public void initDefaultCommand() {

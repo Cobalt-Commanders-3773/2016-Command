@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3773.robot.subsystems;
 
 import org.usfirst.frc.team3773.robot.RobotMap;
-import org.usfirst.frc.team3773.robot.commands.AutoShoot;
+import org.usfirst.frc.team3773.robot.commands.autonomous.AutoShoot;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;

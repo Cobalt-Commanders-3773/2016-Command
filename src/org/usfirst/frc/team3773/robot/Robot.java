@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team3773.robot;
 
-import org.usfirst.frc.team3773.robot.commands.DriveForward;
+import org.usfirst.frc.team3773.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3773.robot.subsystems.Arm;
 import org.usfirst.frc.team3773.robot.subsystems.Camera;
 import org.usfirst.frc.team3773.robot.subsystems.DriveTrain;
@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DriveTrain();
 		camera = new Camera();
 		shooter = new Shooter();
-		arm = new Arm(); //Check to see why Arm is invalid but DriveTrain is not
+		arm = new Arm();
 		
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", defaultAuto);
