@@ -16,7 +16,8 @@ public class OI {
     private Joystick leftJoystick = new Joystick(RobotMap.leftJoystickChannel);
     private Joystick rightJoystick = new Joystick(RobotMap.rightJoystickChannel);
     private Joystick xboxController = new Joystick(RobotMap.xboxChannel);
-    private boolean driveTrigger = rightJoystick.getRawButton(1);
+    //Not sure if it is correct to put diff axis here and then use an accessor to pull them for commands
+    private boolean driveTrigger = rightJoystick.getRawButton(1); //Trigger on the right joystick
     private double xboxLY = xboxController.getRawAxis(1); //Left joystick y-axis
 
 
@@ -26,6 +27,8 @@ public class OI {
         //SmartDashboard.putData("Deliver Soda", new Autonomous());
 
         //Drive Joystick
+        //Check how an axis should be done
+        //The joystick buttons are correct
     	double driveStickY = rightJoystick.getY();
     	double driveStickX = rightJoystick.getX();
     	//boolean driveTrigger = rightJoystick.getRawButton(1);
@@ -63,7 +66,7 @@ public class OI {
     public Joystick getRightJoystick() {
     	return rightJoystick;
     }
-    
+    //Check
     public boolean getDriveTrigger(){
     	return driveTrigger;
     }
@@ -71,7 +74,7 @@ public class OI {
     public Joystick getXboxController() {
     	return xboxController;
     }
-    
+    //Check
     public double getXboxLeftJoystickYAxis(){
     	if(Math.abs(xboxLY) <= .25)
         	xboxLY = 0.0;
