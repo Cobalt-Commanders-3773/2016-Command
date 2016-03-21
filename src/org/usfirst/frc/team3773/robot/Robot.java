@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain drivetrain;
 	public static Camera camera;
 	public static Shooter shooter;
-	public static Arm arm;
+	public static Arm arm; //Check to see why Arm is invalid but DriveTrain is not
 
     Command autonomousCommand;    
     final String defaultAuto = "Default";
@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot {
 		drivetrain = new DriveTrain();
 		camera = new Camera();
 		shooter = new Shooter();
-		arm = new Arm();
+		arm = new Arm(); //Check to see why Arm is invalid but DriveTrain is not
 		
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", defaultAuto);
@@ -83,6 +83,7 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
@@ -96,57 +97,45 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
         switch(autoSelected) {
-    	case portAuto: //NEEDS TESTING
+    	case portAuto:
     		//Code to complete the Portcullis
     		
             break;
-    	case chevalAuto: //NEEDS TESTING
+    	case chevalAuto:
     		//Code to complete the Cheval de Frise
     		
     		break;
-    	case moatAuto: //TIME?
+    	case moatAuto:
     		//Code to complete the Moat
     		autonomousCommand = new DriveForward(2, -.65);
     		break;
-    	case rampAuto: //NEEDS TESTING
+    	case rampAuto:
     		//Code to complete the Ramparts
     		autonomousCommand = new DriveForward(2, -.85);
     		break;
-    	case drawAuto: //NEEDS TESTING
+    	case drawAuto:
     		//Code to complete the Drawbridge
 
     		break;
-    	case sallyAuto: //NEEDS TESTING
+    	case sallyAuto:
     		//Code to complete the Sallyport
     		 
     		break;
-    	case rockAuto: //NEEDS TESTING
+    	case rockAuto:
     		//Code to complete the Rock Wall
     		autonomousCommand = new DriveForward(2.5, -.85);
     		break;
-    	case roughAuto: //NEEDS TESTING
+    	case roughAuto:
     		//Code to complete the Rough Terrain
     		autonomousCommand = new DriveForward(2.5, -.65);
     		break;
-    	case minAuto: //NEEDS TESTING
+    	case minAuto:
     		//Code to drive over the auto line at the start of the match
     		autonomousCommand = new DriveForward(1, -.5); //(time in seconds, speed of motors)
     		break;
     	case testAuto: //FOR TESTING AUTO IDEAS
     		//Space to test Auto concepts
-    		//(int position, double timeToCross, double powerToCross, double timeToCenter, double currentDistance)
     		
     		break;
     	case defaultAuto:
