@@ -6,11 +6,11 @@ import org.usfirst.frc.team3773.robot.commands.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Arm {
+public class Arm extends Subsystem{
 	
 	private SpeedController armTalon1, armTalon2;
-	private double sensitivity = 0, time = 0;
 	
 	public Arm(){
 		super();
@@ -21,7 +21,7 @@ public class Arm {
 	public void initDefaultCommand() {
 		setDefaultCommand(new ArmWithJoystick());
 	}
-	
+
 	public void moveArm(double armSpeed, double sensitivity){
 		armTalon1.set(armSpeed*sensitivity);
 		armTalon2.set(armSpeed*sensitivity);
