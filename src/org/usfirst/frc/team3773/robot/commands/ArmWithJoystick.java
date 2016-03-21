@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ArmWithJoystick extends Command {
 
-    public ArmWithJoystick() {
+    public ArmWithJoystick() { //Check the constructor of DriveForward for comparison
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.arm);
@@ -26,7 +26,7 @@ public class ArmWithJoystick extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
+    protected boolean isFinished() { //Change this?
         return false;
     }
 
