@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ *Split into two subsysems?
+ * the shooter and the buffer bar?
  */
 public class Shooter extends Subsystem {
     
