@@ -26,7 +26,7 @@ public class Arm {
 		armTalon1.set(armSpeed*sensitivity);
 		armTalon2.set(armSpeed*sensitivity);
 	}
-	
+	//Check how to toss the time to the command to set the timeout
 	public void raiseArm(double armSpeed, double time){
 		armTalon1.set(armSpeed);
 		armTalon2.set(armSpeed);
