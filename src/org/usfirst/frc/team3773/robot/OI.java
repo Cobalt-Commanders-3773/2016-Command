@@ -16,9 +16,20 @@ public class OI { //Inputs as private or not?
         
     public OI() {
     	// Put Some buttons on the SmartDashboard
-        //SmartDashboard.putData("Elevator Bottom", new SetElevatorSetpoint(0));    
-        //SmartDashboard.putData("Deliver Soda", new Autonomous());
         SmartDasboard.putData("Auto Shoot", new AutoShoot());
+        SmartDashboard.putData("BallIn", new BallIn());
+        SmartDashboard.putData("BallOut", new BallOut());
+        SmartDashboard.putData("ShooterWheels", new ShooterWheels());
+        SmartDashboard.putData("ShooterWheelsReverse", new ShooterWheelsReverse());
+        //SmartDashboard.putData("SwapCamera", new SwapCamera());
+        //AutoButtons
+        SmartDashboard.putData("AutoShoot", new AutoShoot()); 
+        //Maybe change to running the commands in parallel instead if this does not work
+        SmartDashboard.putData("DriveForward", new DriveForward(2. -.65));
+        SmartDashboard.putData("EngageShooterWheels", new EngageShooterWheels(2));
+        SmartDashboard.putData("FireBall", new FireBall(2));
+        SmartDashboard.putData("StopShooter", new StopShooter());
+        
         
         Joystick leftJoystick = new Joystick(RobotMap.leftJoystickChannel);
         Joystick rightJoystick = new Joystick(RobotMap.rightJoystickChannel);
