@@ -24,12 +24,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	//public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
 	public static DriveTrain drivetrain;
 	public static Camera camera;
 	public static Shooter shooter;
-	public static Arm arm; //Check to see why Arm is invalid but DriveTrain is not
+	public static Arm arm;
 
     Command autonomousCommand;    
     final String defaultAuto = "Default";
@@ -46,10 +45,6 @@ public class Robot extends IterativeRobot {
     String autoSelected;
     SendableChooser chooser; //Create the chooser for the dashboard
 
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
     public void robotInit() {
 		oi = new OI();
 		drivetrain = new DriveTrain();
@@ -71,12 +66,7 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Test Auto", testAuto);
         SmartDashboard.putData("Auto choices", chooser);
     }
-	
-	/**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-     */
+
     public void disabledInit(){
 
     }
@@ -86,15 +76,6 @@ public class Robot extends IterativeRobot {
 		log();
 	}
 
-	/**
-	 * This autonomous (along with the chooser code above) shows how to select between different autonomous modes
-	 * using the dashboard. The sendable chooser code works with the Java SmartDashboard. If you prefer the LabVIEW
-	 * Dashboard, remove all of the chooser code and uncomment the getString code to get the auto name from the text box
-	 * below the Gyro
-	 *
-	 * You can add additional auto modes by adding additional commands to the chooser code above (like the commented example)
-	 * or additional comparisons to the switch structure below with additional strings & commands.
-	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
         switch(autoSelected) {
@@ -148,33 +129,20 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.start();
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         log();
     }
 
     public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to 
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
-    /**
-     * This function is called periodically during operator control
-     */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         log();
     }
-    
-    /**
-     * This function is called periodically during test mode
-     */
+
     public void testPeriodic() {
         LiveWindow.run();
     }
