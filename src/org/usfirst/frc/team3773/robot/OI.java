@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI { //Inputs as private or not?
-//	private Joystick leftJoystick = new Joystick(RobotMap.leftJoystickChannel);
+	private Joystick leftJoystick = new Joystick(RobotMap.leftJoystickChannel);
     private Joystick rightJoystick = new Joystick(RobotMap.rightJoystickChannel);
     private Joystick xboxController = new Joystick(RobotMap.xboxChannel);
     //Not sure if it is correct to put diff axis here and then use an accessor to pull them for commands

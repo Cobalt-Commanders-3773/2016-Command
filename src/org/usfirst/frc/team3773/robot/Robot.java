@@ -3,7 +3,6 @@ package org.usfirst.frc.team3773.robot;
 
 import org.usfirst.frc.team3773.robot.commands.autonomous.DriveForward;
 import org.usfirst.frc.team3773.robot.subsystems.Arm;
-import org.usfirst.frc.team3773.robot.subsystems.Camera;
 import org.usfirst.frc.team3773.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3773.robot.subsystems.Shooter;
 
@@ -26,7 +25,6 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi;
 	public static DriveTrain drivetrain;
-	public static Camera camera;
 	public static Shooter shooter;
 	public static Arm arm;
 
@@ -48,7 +46,6 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
 		oi = new OI();
 		drivetrain = new DriveTrain();
-		camera = new Camera();
 		shooter = new Shooter();
 		arm = new Arm();
 		
@@ -65,6 +62,8 @@ public class Robot extends IterativeRobot {
         chooser.addObject("Auto Line", minAuto);
         chooser.addObject("Test Auto", testAuto);
         SmartDashboard.putData("Auto choices", chooser);
+        log();
+        
     }
 
     public void disabledInit(){
@@ -149,5 +148,8 @@ public class Robot extends IterativeRobot {
     
     public void log(){
     	drivetrain.log();
+    	arm.log();
+    	shooter.log();
+        SmartDashboard.putData(Scheduler.getInstance());
     }
 }

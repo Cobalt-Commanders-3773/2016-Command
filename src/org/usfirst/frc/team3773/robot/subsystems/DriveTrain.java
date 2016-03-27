@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.usfirst.frc.team3773.robot.commands.DriveWithJoystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team3773.robot.Robot;
 import org.usfirst.frc.team3773.robot.RobotMap;
 
 /**
@@ -45,6 +47,7 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("Distance Graph ", currentDistance);
         SmartDashboard.putNumber("Distance", currentDistance);
         SmartDashboard.putNumber("IRED", infraRed.getAverageVoltage());
+        SmartDashboard.putData(Robot.drivetrain);
 
 	}
 

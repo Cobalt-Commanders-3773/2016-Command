@@ -1,11 +1,15 @@
 package org.usfirst.frc.team3773.robot.subsystems;
 
+import javax.swing.text.StyleContext.SmallAttributeSet;
+
+import org.usfirst.frc.team3773.robot.Robot;
 import org.usfirst.frc.team3773.robot.RobotMap;
 import org.usfirst.frc.team3773.robot.commands.autonomous.AutoShoot;
 
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *Split into two subsysems?
@@ -56,6 +60,9 @@ public class Shooter extends Subsystem {
 		shooterIn.set(0.0);
 	}
 	
+	public void log(){
+		SmartDashboard.putData(Robot.shooter);
+	}
     
     
 }
