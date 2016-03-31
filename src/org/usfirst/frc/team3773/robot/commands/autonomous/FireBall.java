@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FireBall extends Command {
 
-    public FireBall(double delay) {
+    public FireBall() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.shooter);
-    	setTimeout(delay);
+    	//setTimeout(delay);
     }
 
     // Called just before this Command runs the first time
@@ -27,15 +27,17 @@ public class FireBall extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut();
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        Robot.shooter.stopIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        Robot.shooter.stopIntake();
     }
 }
