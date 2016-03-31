@@ -53,9 +53,9 @@ public class OI { //Inputs as private or not?
         SmartDashboard.putData("AutoShoot", new AutoShoot()); 
         //Maybe change to running the commands in parallel instead if this does not work
         SmartDashboard.putData("DriveForward", new DriveForward(2.0, -.65));
-        SmartDashboard.putData("EngageShooterWheels", new EngageShooterWheels(2));
-        SmartDashboard.putData("FireBall", new FireBall(2));
-        SmartDashboard.putData("StopShooter", new StopShooter());
+        SmartDashboard.putData("EngageShooterWheels", new EngageShooterWheels());
+        SmartDashboard.putData("FireBall", new FireBall());
+        //SmartDashboard.putData("StopShooter", new StopShooter());
 
         // Connect the buttons to commands
         //driveStick3.whenPressed(new SwapCamera());
