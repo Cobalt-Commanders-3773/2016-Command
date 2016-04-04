@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3773.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team3773.robot.commands.*;
 import org.usfirst.frc.team3773.robot.commands.autonomous.AutoShoot;
@@ -23,21 +24,21 @@ public class OI { //Inputs as private or not?
     private double driveStickY = rightJoystick.getY();
     private double driveStickX = rightJoystick.getX();
     private boolean driveTrigger = rightJoystick.getRawButton(1);
-    private JoystickButton driveStick2 = new JoystickButton(rightJoystick, 2); //Button 2 on the driveJoystick
-    private JoystickButton driveStick3 = new JoystickButton(rightJoystick, 3);
+    private Button driveStick2 = new JoystickButton(rightJoystick, 2); //Button 2 on the driveJoystick
+    private Button driveStick3 = new JoystickButton(rightJoystick, 3);
     private double sens = (-rightJoystick.getZ() + 1) / 2.0; //Sets the sensitivity of the drive joystick
     //Xbox controller
-    private JoystickButton xboxA = new JoystickButton(xboxController, 1); //A button
-    private JoystickButton xboxB = new JoystickButton(xboxController, 2); //B button
-    private JoystickButton xboxX = new JoystickButton(xboxController, 3); //X button
-    private JoystickButton xboxY = new JoystickButton(xboxController, 4); //Y button
-    private JoystickButton xboxRB = new JoystickButton(xboxController, 6); //Right Bumper
-    private JoystickButton xboxLB = new JoystickButton(xboxController, 5); //Left Bumper
+    private Button xboxA = new JoystickButton(xboxController, 1); //A button
+    private Button xboxB = new JoystickButton(xboxController, 2); //B button
+    private Button xboxX = new JoystickButton(xboxController, 3); //X button
+    private Button xboxY = new JoystickButton(xboxController, 4); //Y button
+    private Button xboxRB = new JoystickButton(xboxController, 6); //Right Bumper
+    private Button xboxLB = new JoystickButton(xboxController, 5); //Left Bumper
     private double xboxLX = xboxController.getRawAxis(0); //Left joystick x-axis?
     private double xboxLY = xboxController.getRawAxis(1); //Left joystick y-axis
     private double xboxRX = xboxController.getRawAxis(4); //Right joystick x-axis
     private double xboxRY = xboxController.getRawAxis(5); //Right joystick y-axis
-    private JoystickButton xboxStart = new JoystickButton(xboxController, 9); //Start button
+    private Button xboxStart = new JoystickButton(xboxController, 9); //Start button
     private double xboxLT = xboxController.getRawAxis(2); //Left trigger //check axis number
     private double xboxRT = xboxController.getRawAxis(3); //Right trigger //check axis number
         
