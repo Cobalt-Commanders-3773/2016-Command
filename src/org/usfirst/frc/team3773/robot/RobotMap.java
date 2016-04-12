@@ -21,7 +21,7 @@ public class RobotMap {
     public static int ultrasonicChannel = 1; //Channel for the range finder
     
     //DIGITAL INPUTS
-    public static int armLimitChannel = 2; //Limit switch for the top of the arm
+    public static int armLimitChannel = 0; //Limit switch for the top of the arm
     
     //USB (port number on the dashboard)
     public static int leftJoystickChannel = 0; //Port number for the left joystick

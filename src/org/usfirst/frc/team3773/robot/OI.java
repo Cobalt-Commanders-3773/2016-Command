@@ -4,29 +4,26 @@ package org.usfirst.frc.team3773.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+import java.awt.font.ShapeGraphicAttribute;
+
 import org.usfirst.frc.team3773.robot.commands.*;
-import org.usfirst.frc.team3773.robot.commands.autonomous.AutoShoot;
-import org.usfirst.frc.team3773.robot.commands.autonomous.DriveForward;
-import org.usfirst.frc.team3773.robot.commands.autonomous.EngageShooterWheels;
-import org.usfirst.frc.team3773.robot.commands.autonomous.FireBall;
-import org.usfirst.frc.team3773.robot.commands.autonomous.StopShooter;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
-public class OI { //Inputs as private or not?
+public class OI { //Create all of the joystick axis and buttons
 	private Joystick leftJoystick = new Joystick(RobotMap.leftJoystickChannel);
     private Joystick rightJoystick = new Joystick(RobotMap.rightJoystickChannel);
     private Joystick xboxController = new Joystick(RobotMap.xboxChannel);
-    //Not sure if it is correct to put diff axis here and then use an accessor to pull them for commands
-    private double driveStickY = rightJoystick.getY();
-    private double driveStickX = rightJoystick.getX();
-    private boolean driveTrigger = rightJoystick.getRawButton(1);
+    //private double driveStickY = rightJoystick.getY();
+    //private double driveStickX = rightJoystick.getX();
+    private Button driveTrigger = new JoystickButton(rightJoystick, 1);
     private Button driveStick2 = new JoystickButton(rightJoystick, 2); //Button 2 on the driveJoystick
     private Button driveStick3 = new JoystickButton(rightJoystick, 3);
-    private double sens = (-rightJoystick.getZ() + 1) / 2.0; //Sets the sensitivity of the drive joystick
+    //private double sens = (-rightJoystick.getZ() + 1) / 2.0; //Sets the sensitivity of the drive joystick
     //Xbox controller
     private Button xboxA = new JoystickButton(xboxController, 1); //A button
     private Button xboxB = new JoystickButton(xboxController, 2); //B button
@@ -34,66 +31,83 @@ public class OI { //Inputs as private or not?
     private Button xboxY = new JoystickButton(xboxController, 4); //Y button
     private Button xboxRB = new JoystickButton(xboxController, 6); //Right Bumper
     private Button xboxLB = new JoystickButton(xboxController, 5); //Left Bumper
-    private double xboxLX = xboxController.getRawAxis(0); //Left joystick x-axis?
+    //private double xboxLX = xboxController.getRawAxis(0); //Left joystick x-axis?
     private double xboxLY = xboxController.getRawAxis(1); //Left joystick y-axis
-    private double xboxRX = xboxController.getRawAxis(4); //Right joystick x-axis
+    //private double xboxRX = xboxController.getRawAxis(4); //Right joystick x-axis
     private double xboxRY = xboxController.getRawAxis(5); //Right joystick y-axis
-    private Button xboxStart = new JoystickButton(xboxController, 9); //Start button
-    private double xboxLT = xboxController.getRawAxis(2); //Left trigger //check axis number
-    private double xboxRT = xboxController.getRawAxis(3); //Right trigger //check axis number
+    //private Button xboxStart = new JoystickButton(xboxController, 8); //Start button (does not work)
+    //private double xboxLT = xboxController.getRawAxis(2); //Left trigger //check axis number
+    //private double xboxRT = xboxController.getRawAxis(3); //Right trigger //check axis number
         
     public OI() {
     	// Put Some buttons on the SmartDashboard
-        SmartDashboard.putData("Auto Shoot", new AutoShoot());
-        SmartDashboard.putData("BallIn", new BallIn());
-        SmartDashboard.putData("BallOut", new BallOut());
-        SmartDashboard.putData("ShooterWheels", new ShooterWheels());
-        SmartDashboard.putData("ShooterWheelsReverse", new ShooterWheelsReverse());
-        //SmartDashboard.putData("SwapCamera", new SwapCamera());
-        //AutoButtons
-        SmartDashboard.putData("AutoShoot", new AutoShoot()); 
-        //Maybe change to running the commands in parallel instead if this does not work
-        SmartDashboard.putData("DriveForward", new DriveForward(2.0, -.65));
-        SmartDashboard.putData("EngageShooterWheels", new EngageShooterWheels());
-        SmartDashboard.putData("FireBall", new FireBall());
-        //SmartDashboard.putData("StopShooter", new StopShooter());
+        //SmartDashboard.putData("String", new Command()); 
 
         // Connect the buttons to commands
-        //driveStick3.whenPressed(new SwapCamera());
-        xboxX.whenActive(new BallIn());
-        xboxY.whenActive(new BallOut());
-        xboxLB.whenActive(new ShooterWheels());
-        xboxRB.whenActive(new ShooterWheelsReverse());
+    	xboxX.whileActive(new BallIntake());
+        xboxY.whileActive(new BallOut());
+        xboxA.whileActive(new SlowBallIn());
+        xboxB.whileActive(new SlowBallOut());
+        xboxLB.whileActive(new ShooterOut());
+        xboxRB.whileActive(new ShooterIn());
+        driveTrigger.whileActive(new DriveFlip());
+        driveStick3.whenPressed(new StartCamera1());
+        driveStick2.whenPressed(new StartCamera2());
     }
-    
+
+    /**
+     * Accesses the left joystick
+     * 
+     * @return Left joystick
+     */
     public Joystick getLeftJoystick() {
         return leftJoystick;
     }
     
+    /**
+     * Accesses the right joystick
+     * 
+     * @return Right joystick
+     */
     public Joystick getRightJoystick() {
     	return rightJoystick;
     }
-        //Remove?
-    public boolean getDriveTrigger(){
-        return driveTrigger;
-    }
     
+    /**
+     * Accesses the xbox controller
+     * 
+     * @return xbox controller
+     */
     public Joystick getXboxController() {
     	return xboxController;
     }
-    //Create deadzone?
-    //Remove?
+    
+    /**
+     * Creates a deadzone of .25 and gets the y-axis
+     * of the left joystick on the xbox controller
+     *     
+     * @return xbox left y-axis
+     */
     public double getXboxLeftJoystickYAxis(){
-    	if(Math.abs(xboxLY) <= .25)
+    	if(Math.abs(this.getXboxController().getRawAxis(1)) <= .25)
         	xboxLY = 0.0;
+    	else
+    		xboxLY = this.getXboxController().getRawAxis(1);
     	return xboxLY;
     }
     
-    public double deadZone(double xboxAxis){
-    	if(Math.abs(xboxAxis) <= .25)
-			xboxAxis = 0.0;
-    	return xboxAxis;
-
+    /**
+     * Creates a deadzone of .25 and gets the y-axis
+     * of the right joystick on the xbox controller
+     * 
+     * @return
+     */
+    public double getXboxRightJoystickYAxis(){
+    	if(Math.abs(this.getXboxController().getRawAxis(5)) <= .25)
+        	xboxRY = 0.0;
+    	else
+    		xboxRY = this.getXboxController().getRawAxis(5);
+    	return xboxRY;
     }
-}
 
+}
