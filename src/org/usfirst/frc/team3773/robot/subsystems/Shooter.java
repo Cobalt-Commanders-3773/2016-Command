@@ -1,11 +1,7 @@
 package org.usfirst.frc.team3773.robot.subsystems;
 
-import javax.swing.text.StyleContext.SmallAttributeSet;
-
 import org.usfirst.frc.team3773.robot.Robot;
 import org.usfirst.frc.team3773.robot.RobotMap;
-import org.usfirst.frc.team3773.robot.commands.autonomous.AutoShoot;
-
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -16,29 +12,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * the shooter and the buffer bar?
  */
 public class Shooter extends Subsystem {
-    
+   
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	private SpeedController shooterOut1;
 	private SpeedController shooterOut2;
-	private SpeedController shooterIn;
 
     public Shooter(){
+    	super();
     	shooterOut1 = new Talon(RobotMap.shooterOut1Channel);
     	shooterOut2 = new Talon(RobotMap.shooterOut2Channel);
-    	shooterIn = new Talon(RobotMap.shooterInChannel); 
     }
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+		//setDefaultCommand(new ShooterWheelsOut());
     }
 	
-	public void shooterIn(){
+	public void shooterIn(double sens){
 		shooterOut1.set(1.0);
     	shooterOut2.set(-1.0);
 	}
 	
-	public void shooterOut(){
+	public void shooterOut(double sens){
 		shooterOut1.set(-1.0);
     	shooterOut2.set(1.0);
 	}
@@ -47,23 +43,9 @@ public class Shooter extends Subsystem {
 		shooterOut1.set(0.0);
 		shooterOut2.set(0.0);
 	}
-	
-	public void ballIn(){
-		shooterIn.set(1.0);
-	}
-	
-	public void ballOut(){
-		shooterIn.set(-1.0);
-	}
-	
-	public void stopIntake(){
-		shooterIn.set(0.0);
-	}
+
 	
 	public void log(){
 		SmartDashboard.putData(Robot.shooter);
-	}
-    
-    
+	}   
 }
-

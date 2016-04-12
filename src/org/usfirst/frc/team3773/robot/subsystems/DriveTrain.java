@@ -1,8 +1,10 @@
 package org.usfirst.frc.team3773.robot.subsystems;
 
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,6 +25,7 @@ public class DriveTrain extends Subsystem {
 	private AnalogInput rangefinder;
 	private AnalogInput infraRed; 
 	private double valueToInches = 102.4; //Factor to convert sensor values to a distance in inches
+	private ADXRS450_Gyro gyro;
 
 
 	public DriveTrain() {
@@ -32,7 +35,7 @@ public class DriveTrain extends Subsystem {
 		drive = new RobotDrive(leftDrive, rightDrive);
 		rangefinder = new AnalogInput(RobotMap.ultrasonicChannel);
 		infraRed = new AnalogInput(RobotMap.infraRedChannel);
-
+		gyro = new ADXRS450_Gyro();
 	}
 
 	public void initDefaultCommand() {
@@ -47,8 +50,7 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("Distance Graph ", currentDistance);
         SmartDashboard.putNumber("Distance", currentDistance);
         SmartDashboard.putNumber("IRED", infraRed.getAverageVoltage());
-        SmartDashboard.putData(Robot.drivetrain);
-
+        SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
 	}
 
 	public void drive(double left, double right) {
@@ -70,12 +72,8 @@ public class DriveTrain extends Subsystem {
 	public void stop(){
 		drive.arcadeDrive(0.0, 0.0);
 	}
-
-	/**
-	 * @return The distance to the obstacle detected by the rangefinder.
-	 */
-	public double getDistanceToObstacle() { //Not needed?
-		// Really meters in simulation since it's a rangefinder...
-		return rangefinder.getAverageVoltage();
+	
+	public double getAngle(){
+		return gyro.getAngle();
 	}
 }
