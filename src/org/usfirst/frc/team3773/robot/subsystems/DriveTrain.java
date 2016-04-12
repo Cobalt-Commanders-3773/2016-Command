@@ -68,6 +68,14 @@ public class DriveTrain extends Subsystem {
 	public void driveFlip(double left, double right){
 		drive.arcadeDrive(-left, -right);
 	}
+	//Check for flips
+	public void tankDrive(double left, double right){
+		drive.tankDrive(left, -right);
+	}
+	
+	public void tankDrive(Joystick joyL, Joystick joyR){
+		drive.tankDrive(joyL, joyR);
+	}
 	
 	public void stop(){
 		drive.arcadeDrive(0.0, 0.0);
