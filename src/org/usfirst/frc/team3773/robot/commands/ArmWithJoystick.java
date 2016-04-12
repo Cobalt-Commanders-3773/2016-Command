@@ -22,18 +22,18 @@ public class ArmWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//Robot.arm.moveArm(Robot.oi.getXboxController().getRawAxis(1), 1.00);
-    	Robot.arm.moveArm(Robot.oi.getXboxLeftJoystickYAxis(), 1.0);
+    	//if(Robot.arm.getArmLimit())
+    	Robot.arm.moveArm(Robot.oi.getXboxRightJoystickYAxis());
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() { //Change this?
-        return false;
+    protected boolean isFinished() { 
+    	return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        Robot.arm.moveArm(0.0, 0.0);
+        Robot.arm.stop();
     }
 
     // Called when another command which requires one or more of the same

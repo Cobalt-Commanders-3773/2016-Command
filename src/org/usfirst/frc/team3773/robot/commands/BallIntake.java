@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BallOut extends Command {
+public class BallIntake extends Command {
 
-    public BallOut() {
+    public BallIntake() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.intake);
@@ -21,7 +21,7 @@ public class BallOut extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.ballOut(.75);
+    	Robot.intake.ballIn(.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

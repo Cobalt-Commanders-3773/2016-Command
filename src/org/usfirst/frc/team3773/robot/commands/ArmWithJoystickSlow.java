@@ -7,12 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class BallOut extends Command {
-
-    public BallOut() {
+public class ArmWithJoystickSlow extends Command {
+	
+	private double move;
+	
+    public ArmWithJoystickSlow() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.intake);
+    	requires(Robot.arm);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +23,9 @@ public class BallOut extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.intake.ballOut(.75);
+    	move = Robot.oi.getXboxRightJoystickYAxis();
+    	move  = move*.25;
+    	Robot.arm.moveArm(move);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,7 +35,7 @@ public class BallOut extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.intake.stopIntake();
+    	Robot.arm.stop();
     }
 
     // Called when another command which requires one or more of the same
