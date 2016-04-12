@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveForward extends Command {
+public class SpinRobot extends Command {
 	
 	private double speed;
 	private double time;
 
-    public DriveForward(double time, double speed) {
+    public SpinRobot(double time, double speed) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.drivetrain);
